@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/a391e6c182.js" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books</title>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <!-- main section start -->
+    <main>
+        <!-- header section start -->
+        <header>
+            <div id="hero-container">
+                <div id="hero-elements">
+                    <div id="quote-container">
+                        <h2 id="hero-quote">Countless books to enhance your glory and humanism</h2>
+                    </div>
+                    <div id="search-container">
+                        <input type="search" name="" id="search-field" placeholder="Search for your next book...">
+                    <button onclick="searchText()" id="search-btn">Search</button>
+                    </div>
+                </div>
+                <img id="hero-img" src="images/bookstore.jpg" alt="bookstore hero image">
+            </div>
+        </header>
+        <!-- header section end -->
+
+        <!-- result section start -->
+        <div id="result-section">
+            <!-- loader start -->
+            <div id="loader-container">
+                <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <!-- loader end -->
+            <h2 id="result-stat"></h2>
+            <h3 id="view-msg"></h3>            
+            <div id="result-container">
+                <!-- <div class="book">
+                    <div class="book-cover">
+                        <img src="images/554106-M.jpg" alt="">
+                    </div>
+                    <div class="book-details">
+                        <h2>Python and XML</h2>
+                        <hr>
+                        <h4 class="author">Jones, Christopher A.</h4>
+                        <h4>(2002)</h4>
+                    </div>
+                </div> -->
+                <!-- <div class="book">
+                    <div class="book-cover no-cover">
+                        <i class="fas fa-book"></i>
+                        <h1>Book cover not found</h1>
+                    </div>
+                    <div class="book-details">
+                        <h2>Python and XML</h2>
+                        <hr>
+                        <h4 class="author">Jones, Christopher A.</h4>
+                        <h4>(2002)</h4>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- result section end -->
+
+        <!-- modal section start -->
+        <div id="modal" class="modal">
+
+            <!-- modal header part start -->
+            <div class="modal-header">
+                <div id="title">Book Cover View</div>
+                <button data-close-button id="modal-close">&times;</button>
+            </div>
+            <!-- modal header part end -->
+
+            <!-- modal body part start -->
+            <div id="modal-body" class="modal-body">
+                <!-- <img src="https://covers.openlibrary.org/b/id/8231790-L.jpg" alt=""> -->
+            </div>
+            <!-- modal body part end -->
+
+        </div>
+
+        <!-- to darken out the screen on the modal's open -->
+        <div id="overlay"></div>
+
+        <!-- modal section end -->
+    </main>
+    <!-- main section end -->
+
+    <!-- script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
