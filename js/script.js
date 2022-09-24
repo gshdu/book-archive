@@ -1,3 +1,11 @@
+// error
+/* 
+At first click, it skips openModalButton.forEach();
+At second click, it iterates once.
+At the third click, it iterates twice.
+So, it goes like (number of clicks + iteration) whereas initial iteration is 0.
+*/
+
 // search bar styles on mouse hover and clicks //
 document.getElementById('search-field').addEventListener('mousemove', () => {
     document.getElementById('search-field').style.border = '2px solid black';
@@ -134,9 +142,18 @@ const displayData = data => {
 //     const modalBody = document.getElementsByClassName('modal-body');
 //     modalBody.appendChild(bookModalCover);
 // }
+const openModal = modal => {
+    // debugger;
+    console.log('modal opened');
+    if (modal === null) return;
+    else {
+        modal.classList.add('active');
+        overlay.classList.add('active');
+    }
+}
 const modalFunction = (event) => {
     // debugger;
-    const openModalButton = document.querySelectorAll('[data-modal-target]');
+    const openModalButton = document.querySelectorAll('[data-modal-target]'); //nodeList
     const closeModalButton = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
     console.log(event.target);
@@ -147,19 +164,24 @@ const modalFunction = (event) => {
     // debugger;
     modalBody.appendChild(bookModalCover);
     // debugger;
+    console.log(openModalButton);
 
     openModalButton.forEach(button => {
-        debugger;
-        button.addEventListener('click', () => {
-            console.log(openModalButton);
+        // console.log(openModalButton);
+        console.log('clicked');
+        console.log(button);
+        // debugger;
+        // button.addEventListener('click', () => {
+            console.log('entered');
+            // console.log(openModalButton);
             console.log(button + 'clicked');
             // debugger;
             const modal = document.querySelector(button.dataset.modalTarget);
             // debugger;
             openModal(modal);
             // setTimeout(()=>openModal(modal), 2000);
-        })
-    })
+        // })
+    });
 
     /*
     const promise = new Promise((resolve, reject) => {
@@ -194,15 +216,6 @@ const modalFunction = (event) => {
         })
     })
 
-    const openModal = modal => {
-        // debugger;
-        console.log('modal opened');
-        if (modal === null) return;
-        else {
-            modal.classList.add('active');
-            overlay.classList.add('active');
-        }
-    }
     const closeModal = (modal) => {
         if (modal === null) return;
         modal.classList.remove('active');
