@@ -71,21 +71,30 @@ async function loadData(searchValue) {
 
 const modalBody = document.getElementById('modal-body');
 
+// declaring global variables //
+const resultSection = document.getElementById('result-section');
+const restultContainer = document.getElementById('result-container');
+const div = document.getElementById('result-container');
+const resultStat = document.getElementById('result-stat');
+const viewMsg = document.getElementById('view-msg');
+const noResultText = document.getElementById('no-result-text');
+
 const displayData = data => {
     loader(false)
     const books = data?.docs;
     console.log(books);
-    const restultContainer = document.getElementById('result-container');
-    restultContainer.textContent = ``;
-    modalBody.textContent = ``;
-    document.getElementById('result-stat').innerHTML = `${books.length} books out of ${data?.numFound} are shown.`;
-    document.getElementById('view-msg').innerHTML = "Click on the covers to view larger image.";
-    // debugger;
-    books.forEach(book => {
-        if (book?.cover_i) {
-            const bookDiv = document.createElement('div');
-            bookDiv.classList.add('book');
-            bookDiv.innerHTML = `
+
+    if (books.length > 0) {
+        restultContainer.textContent = ``;
+        modalBody.textContent = ``;
+        document.getElementById('result-stat').innerHTML = `${books.length} books out of ${data?.numFound} are shown.`;
+        document.getElementById('view-msg').innerHTML = "Click on the covers to view larger image.";
+        // debugger;
+        books.forEach(book => {
+            if (book?.cover_i) {
+                const bookDiv = document.createElement('div');
+                bookDiv.classList.add('book');
+                bookDiv.innerHTML = `
             <div data-modal-target="#modal" id="book-cover" class="book-cover" onclick="modalFunction(event)">
                 <img src="https://covers.openlibrary.org/b/id/${book?.cover_i}-M.jpg" alt="">
                 <i class="fas fa-eye"></i>
@@ -97,19 +106,19 @@ const displayData = data => {
                 <h4 class="publish-year">(${(book?.first_publish_year) ? book.first_publish_year : 'Publish year not found'})</h4>
             </div>
             `;
-            // console.log(restultContainer);
-            restultContainer.appendChild(bookDiv);
+                // console.log(restultContainer);
+                restultContainer.appendChild(bookDiv);
 
-            // const bookCoverId = document.getElementById('book-cover');
-            // bookCoverId.addEventListener('click', (event) => {
-            //     showImage(event);
-            // });
+                // const bookCoverId = document.getElementById('book-cover');
+                // bookCoverId.addEventListener('click', (event) => {
+                //     showImage(event);
+                // });
 
-        }
-        else {
-            const bookDiv = document.createElement('div');
-            bookDiv.classList.add('book');
-            bookDiv.innerHTML = `
+            }
+            else {
+                const bookDiv = document.createElement('div');
+                bookDiv.classList.add('book');
+                bookDiv.innerHTML = `
             <div class="no-cover">
                 <i class="fas fa-book"></i>
                 <h1>Cover not found</h1>
@@ -121,10 +130,15 @@ const displayData = data => {
                 <h4 class="publish-year">(${(book?.first_publish_year) ? book.first_publish_year : 'Publish year not found'})</h4>
             </div>
             `;
-            restultContainer.appendChild(bookDiv);
-            // bookDiv.textContent = ``;
-        }
-    })
+                restultContainer.appendChild(bookDiv);
+                // bookDiv.textContent = ``;
+            }
+        })
+    }
+    else {
+        console.log('Sorry! No result found.');
+        noResultText.innerText = "No result found";
+    }
 }
 
 // const showImage = event => {
@@ -172,14 +186,14 @@ const modalFunction = (event) => {
         console.log(button);
         // debugger;
         // button.addEventListener('click', () => {
-            console.log('entered');
-            // console.log(openModalButton);
-            console.log(button + 'clicked');
-            // debugger;
-            const modal = document.querySelector(button.dataset.modalTarget);
-            // debugger;
-            openModal(modal);
-            // setTimeout(()=>openModal(modal), 2000);
+        console.log('entered');
+        // console.log(openModalButton);
+        console.log(button + 'clicked');
+        // debugger;
+        const modal = document.querySelector(button.dataset.modalTarget);
+        // debugger;
+        openModal(modal);
+        // setTimeout(()=>openModal(modal), 2000);
         // })
     });
 
@@ -228,9 +242,11 @@ const modalFunction = (event) => {
 // console.log(bookCoverId);
 
 // load animation //
+/*
 const div = document.getElementById('result-container');
 const resultStat = document.getElementById('result-stat');
 const viewMsg = document.getElementById('view-msg');
+*/
 const divContents = div.innerHTML;
 const loaderContainer = document.getElementById('loader-container');
 
@@ -244,6 +260,8 @@ const loader = isLoad => {
         div.textContent = ``;
         resultStat.textContent = ``;
         viewMsg.textContent = ``;
+        // resultSection.textContent = ``;
+        noResultText.textContent = ``;
         loaderContainer.removeAttribute("style");
         loaderContainer.style.opacity = '100%';
         // loaderContainer.style.display = 'block';
