@@ -78,7 +78,7 @@ const displayData = data => {
     const restultContainer = document.getElementById('result-container');
     restultContainer.textContent = ``;
     modalBody.textContent = ``;
-    document.getElementById('result-stat').innerHTML = `${books.length} books out of ${data?.numFound} are listed.`;
+    document.getElementById('result-stat').innerHTML = `${books.length} books out of ${data?.numFound} are shown.`;
     document.getElementById('view-msg').innerHTML = "Click on the covers to view larger image.";
     // debugger;
     books.forEach(book => {
@@ -112,7 +112,7 @@ const displayData = data => {
             bookDiv.innerHTML = `
             <div class="no-cover">
                 <i class="fas fa-book"></i>
-                <h1>Book cover not found</h1>
+                <h1>Cover not found</h1>
             </div>
             <div class="book-details">
                 <h2>${book?.title}</h2>
@@ -236,13 +236,16 @@ const loaderContainer = document.getElementById('loader-container');
 
 const loader = isLoad => {
     if (isLoad == false) {
-        loaderContainer.style.opacity = '0';
+        // loaderContainer.style.opacity = '0';
+        loaderContainer.style.display = 'none';
         div.innerHTML = divContents;
     }
     else {
         div.textContent = ``;
         resultStat.textContent = ``;
         viewMsg.textContent = ``;
+        loaderContainer.removeAttribute("style");
         loaderContainer.style.opacity = '100%';
+        // loaderContainer.style.display = 'block';
     }
 }
