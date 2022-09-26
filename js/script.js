@@ -119,13 +119,11 @@ const displayData = data => {
         })
     }
     else {
-        console.log('Sorry! No result found.');
         noResultText.innerText = "No result found";
     }
 }
 
 const openModal = modal => {
-    console.log('modal opened');
     if (modal === null) return;
     else {
         modal.classList.add('active');
@@ -136,8 +134,6 @@ const modalFunction = (event) => {
     const openModalButton = document.querySelectorAll('[data-modal-target]'); //nodeList
     const closeModalButton = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
-    console.log(event.target);
-    console.log(typeof (event.target));
     const bookModalCover = document.createElement('img');
     bookModalCover.setAttribute('src', `${event.target.src}`);
     bookModalCover.setAttribute('style', 'width: 20.5rem; height: 31.25rem;');
@@ -145,10 +141,6 @@ const modalFunction = (event) => {
     modalBody.appendChild(bookModalCover);
 
     openModalButton.forEach(button => {
-        console.log('clicked');
-        console.log(button);
-        console.log('entered');
-        console.log(button + 'clicked');
         const modal = document.querySelector(button.dataset.modalTarget);
         openModal(modal);
     });
