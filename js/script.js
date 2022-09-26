@@ -6,37 +6,80 @@ At the third click, it iterates twice.
 So, it goes like (number of clicks + iteration) whereas initial iteration is 0.
 */
 
+// creating common funcitons //
+
+const commonChanges = elementId => document.getElementById(elementId);
+
+const searchStyles = (changeType, elementId, prop, propValue, attType, attN, attV) =>{
+    /*
+    switch(changeType){
+        case 'style': return commonChanges(elementId, changeType, styleProp, styleValue); // return document.getElementById(elementId).style[styleProp] = styleValue;
+        case 'satt': return document.getElementById(elementId).setAttribute(attN, attV);
+        case 'ratt': return document.getElementById(elementId).removeAttribute(attN);
+        case 'hatt': return document.getElementById(elementId).hasAttribute(attN);
+        case 'class': return document.getElementById(elementId).classList.add(attV);
+    }
+    */
+//    debugger;
+   switch(changeType){
+    case 'style': return commonChanges(elementId)[changeType][prop] = propValue;
+    case 'Attribute': return commonChanges(elementId)[attType + changeType](attN, attV);
+    case 'classList': return commonChanges(elementId)[changeType].add(attV);
+   }
+}
 // search bar styles on mouse hover and clicks //
 document.getElementById('search-field').addEventListener('mousemove', () => {
+    /*
     document.getElementById('search-field').style.border = '2px solid black';
     document.getElementById('search-btn').style.backgroundColor = 'black';
+    */
+    searchStyles('style', 'search-field', 'border', '2px solid black', NaN, NaN, NaN);
+    searchStyles('style', 'search-btn', 'backgroundColor', 'black', NaN, NaN, NaN);
 })
 document.getElementById('search-field').addEventListener('click', () => {
+    /*
     document.getElementById('search-field').style.border = '2px solid black';
     document.getElementById('search-field').setAttribute('placeholder', "Enter keyword");
     document.getElementById('search-btn').style.backgroundColor = 'black';
     document.getElementById('search-btn').classList.add('clicked');
+    */
+   searchStyles('style', 'search-field', 'border', '2px solid black', NaN, NaN, NaN);
+   searchStyles('Attribute', 'search-field', NaN, NaN, 'set', 'placeholder', 'Enter keyword');
+   searchStyles('style', 'search-btn', 'backgroundColor', 'black', NaN, NaN, NaN);
+   searchStyles('classList', 'search-btn', NaN, NaN, NaN, NaN, 'clicked');
 })
 document.getElementById('search-field').addEventListener('blur', () => {
+    /*
     document.getElementById('search-btn').style.backgroundColor = 'brown';
     document.getElementById('search-field').setAttribute('placeholder', 'Search for your next book...');
     document.getElementById('search-btn').removeAttribute('class');
+    */
+   searchStyles('style', 'search-btn', 'backgroundColor', 'brown', NaN, NaN, NaN);
+   searchStyles('Attribute', 'search-field', NaN, NaN, 'set', 'placeholder', 'Search for your next book...');
+   searchStyles('Attribute', 'search-btn', NaN, NaN, 'remove', 'class', NaN);
 })
 document.getElementById('search-field').addEventListener('mouseleave', () => {
     // debugger;
-    document.getElementById('search-field').style.border = '2px solid brown';
-    if (document.getElementById('search-btn').hasAttribute('class') !== true) {
-        document.getElementById('search-btn').style.backgroundColor = 'brown';
+    searchStyles('style', 'search-field', 'border', '2px solid brown', NaN, NaN, NaN);
+    if (searchStyles('Attribute', 'search-btn', NaN, NaN, 'has', 'class', NaN) !== true) {
+        // document.getElementById('search-btn').style.backgroundColor = 'brown';
+        searchStyles('style', 'search-btn', 'backgroundColor', 'brown', NaN, NaN, NaN);
     }
 })
 document.getElementById('search-btn').addEventListener('mouseenter', () => {
+    /*
     document.getElementById('search-field').style.border = '2px solid black';
     document.getElementById('search-btn').style.backgroundColor = 'black';
+    */
+   searchStyles('style', 'search-field', 'border', '2px solid black', NaN, NaN, NaN);
+   searchStyles('style', 'search-btn', 'backgroundColor', 'black', NaN, NaN, NaN);
 })
 document.getElementById('search-btn').addEventListener('mouseleave', () => {
-    document.getElementById('search-field').style.border = '2px solid brown';
-    if (document.getElementById('search-btn').hasAttribute('class') !== true) {
-        document.getElementById('search-btn').style.backgroundColor = 'brown';
+    // document.getElementById('search-field').style.border = '2px solid brown';
+    searchStyles('style', 'search-field', 'border', '2px solid brown', NaN, NaN, NaN);
+    if (searchStyles('Attribute', 'search-btn', NaN, NaN, 'has', 'class', NaN) !== true) {
+        // document.getElementById('search-btn').style.backgroundColor = 'brown';
+        searchStyles('style', 'search-btn', 'backgroundColor', 'brown', NaN, NaN, NaN);
     }
 })
 
