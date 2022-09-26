@@ -57,7 +57,7 @@ body{
     text-align: center;
 }
 #search-field{
-    width: 500px;
+    width: 31.25rem;
     padding: 15px 90px 15px 15px;
     border-radius: 10px;
     border: 2px solid brown;
@@ -351,4 +351,98 @@ hr{
         opacity: 1;
         pointer-events: all;
     }
-  
+
+
+    /* -----------------
+        media queries 
+    ------------------*/
+
+    /* mobile device */
+
+    @media only screen and (min-width: 280px) and (max-width: 688px) {
+        #hero-container{
+            margin: 20px auto;
+            width: 90%;
+        }
+        #hero-quote{
+            font-size: x-large;
+        }
+        #search-field{
+            width: 18.75rem;
+        }
+        #view-msg{
+            font-size: 0.81rem;
+        }
+        #result-container{
+            width: 90%;
+            grid-template-columns: 1fr;
+        }
+        .book{
+            padding: 1.2rem 2.2rem;
+        }
+        #modal-body img{
+            width: 15rem!important;
+            height: 29rem!important;
+        }
+        .book-details h2{
+            font-size:20.8px;
+        }
+        .book-details h4{
+            font-size: 19.2px;
+        }
+    }
+
+    /* fold devices */
+    @media only screen and (max-width: 280px) {
+        #hero-quote{
+            font-size: 1rem;
+        }
+        #search-field{
+            width: 14rem;
+        }
+        #result-stat{
+            font-size: medium;
+        }
+        #view-msg{
+            font-size: xx-small;
+        }
+        #result-container{
+            width: 90%;
+        }
+        .book{
+            padding: 0.8rem;
+        }
+        .book-details h2{
+            font-size: large;
+        }
+        .book-details h4{
+            font-size: medium;
+        }
+        #modal-body img{
+            width: 12rem!important;
+            height: 24rem!important;
+        }
+    }
+
+    /* tab devices */
+    @media only screen and (min-width: 688px) and (max-width: 992px) {
+        #result-container{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        #result-stat{
+            font-size: xx-large;
+        }
+        #view-msg{
+            font-size: larger;
+        }
+        #search-field{
+            width: 26rem;
+        }
+    }
+
+    /* laptop-devices */
+    @media only screen and (min-width: 992px) and (max-width: 1024px) {
+        #result-container{
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
