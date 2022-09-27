@@ -359,19 +359,22 @@ hr{
 
     /* mobile device */
 
-    @media only screen and (min-width: 280px) and (max-width: 688px) {
+    @media only screen and (min-width: 281px) and (max-width: 688px) {
         #hero-container{
             margin: 20px auto;
             width: 90%;
         }
         #hero-quote{
-            font-size: x-large;
+            font-size: large;
         }
         #search-field{
             width: 18.75rem;
         }
+        #result-stat{
+            font-size: 0.88rem;
+        }
         #view-msg{
-            font-size: 0.81rem;
+            font-size: 0.6rem;
         }
         #result-container{
             width: 90%;
@@ -394,14 +397,25 @@ hr{
 
     /* fold devices */
     @media only screen and (max-width: 280px) {
+        html, body{
+            /* margin: 0 auto; */
+            overflow-x: hidden;
+        }
+        #hero-container{
+            /* margin: 20px auto; */
+            width: 90%;
+        }
+        #result-container{
+            grid-template-columns: 1fr;
+        }
         #hero-quote{
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         #search-field{
-            width: 14rem;
+            width: 13rem;
         }
         #result-stat{
-            font-size: medium;
+            font-size: smaller;
         }
         #view-msg{
             font-size: xx-small;
